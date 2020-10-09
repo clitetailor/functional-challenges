@@ -1,6 +1,6 @@
-name: haskell-stack
+name: customer-management
 version: 0.1.0.0
-github: "githubuser/haskell-stack"
+github: "githubuser/customer-management"
 license: BSD3
 author: "Author name here"
 maintainer: "example@example.com"
@@ -17,20 +17,20 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description: Please see the README on GitHub at <https://github.com/githubuser/haskell-stack#readme>
-
-dependencies:
-  - base >= 4.7 && < 5
+description: Please see the README on GitHub at <https://github.com/githubuser/customer-management#readme>
 
 default-extensions:
   - DuplicateRecordFields
   - ExistentialQuantification
 
+dependencies:
+  - base >= 4.7 && < 5
+
 library:
   source-dirs: src
 
 executables:
-  haskell-stack-exe:
+  customer-management-exe:
     main: Main.hs
     source-dirs: app
     ghc-options:
@@ -38,10 +38,10 @@ executables:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - haskell-stack
+      - customer-management
 
 tests:
-  haskell-stack-test:
+  customer-management-test:
     main: Spec.hs
     source-dirs: test
     ghc-options:
@@ -49,4 +49,4 @@ tests:
       - -rtsopts
       - -with-rtsopts=-N
     dependencies:
-      - haskell-stack
+      - customer-management
