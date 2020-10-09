@@ -28,8 +28,6 @@ instance Visualizer VipCustomer where
   getAge (VipCustomer customer) = age customer
 
   visualize (VipCustomer customer) = do
-    putStrLn "##########################"
+    putStrLn "@@@@@@@@@@@@@@@@@@@@@@@@@"
 
     visualize customer
-
-    putStrLn "##########################"

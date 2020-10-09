@@ -26,6 +26,6 @@ instance Visualizer Customer where
   getAge (Customer customer) = getAge customer
 
   visualize (Customer customer) = do
-    putStrLn "@@@@@@@@@@@@@@@@@@@@@@@@"
+    putStrLn "$$$$$$$$$$$$$$$$$$$$$$$$$"
 
     visualize customer
