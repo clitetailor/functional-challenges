@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 65fbe26d4f9a17b5ca2b95afe8bed4bb1a2b673ee0808f525f827fdc7da7b130
+-- hash: 64a4b100489b9238f649f4b35e3f7dfee9917c7d372a86f8d230f602198ff058
 
 name:           customer-management
 version:        0.1.0.0
@@ -28,7 +28,8 @@ source-repository head
 library
   exposed-modules:
       Customer
-      Lib
+      CustomerVisualizer
+      InternalCustomer
       VipCustomer
       Visualizer
   other-modules:

@@ -1,39 +1,36 @@
 module Main where
 
 import Control.Monad (forM_)
-import Customer
-  ( Customer (Customer),
-    DefaultCustomer (DefaultCustomer),
-    age,
-    name,
-  )
-import VipCustomer
-  ( VipCustomer (VipCustomer),
-    VipDefaultCustomer (VipDefaultCustomer),
-    age,
-    name,
-    vipPoints,
-  )
-import Visualizer
-  ( Visualizable (Visualizable),
-    visualize,
-  )
+import Customer (Customer (..))
+import InternalCustomer (InternalCustomer (..))
+import VipCustomer (VipCustomer (..))
+import Visualizer as V (Visualizable (..), printInfo)
 
 main :: IO ()
 main = do
-  let customer1 =
-        Customer
-          DefaultCustomer
-            { name = "Nate Column",
-              age = 18
-            }
-  let customer2 =
-        VipCustomer
-          VipDefaultCustomer
-            { name = "Lia",
-              age = 16,
-              vipPoints = 1
-            }
-  forM_
-    [Visualizable customer1, Visualizable customer2]
-    visualize
+  let customers =
+        [ Visualizable
+            Customer
+              { name = "John Smith",
+                age = 20
+              },
+          Visualizable
+            VipCustomer
+              { basicInfo =
+                  Customer
+                    { name = "Tim Batte",
+                      age = 30
+                    },
+                vipPoints = 100
+              },
+          Visualizable
+            InternalCustomer
+              { basicInfo =
+                  Customer
+                    { name = "Jenny Lars",
+                      age = 40
+                    },
+                department = "IT"
+              }
+        ]
+  forM_ customers V.printInfo

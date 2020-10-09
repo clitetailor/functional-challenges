@@ -1,33 +1,24 @@
 module Visualizer
   ( Visualizer,
     Visualizable (Visualizable),
-    visualize,
-    getName,
-    getAge,
+    customPrint,
+    printInfo,
   )
 where
 
 class Visualizer customerType where
-  getName :: customerType -> String
+  customPrint :: customerType -> IO ()
 
-  getAge :: customerType -> Int
+  printInfo :: customerType -> IO ()
+  printInfo customer = do
+    putStrLn "###################"
 
-  visualize :: customerType -> IO ()
-  visualize customer =
-    putStrLn
-      ( "Hello world, my name is "
-          <> getName customer
-          <> ". I am "
-          <> show (getAge customer)
-          <> " years old!"
-      )
+    customPrint customer
+
+    putStrLn ""
 
 data Visualizable
   = forall a. Visualizer a => Visualizable a
 
 instance Visualizer Visualizable where
-  getName (Visualizable customer) = getName customer
-
-  getAge (Visualizable customer) = getAge customer
-
-  visualize (Visualizable customer) = visualize customer
+  customPrint (Visualizable customer) = customPrint customer

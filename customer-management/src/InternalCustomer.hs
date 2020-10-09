@@ -1,7 +1,7 @@
-module VipCustomer
-  ( VipCustomer (VipCustomer),
+module InternalCustomer
+  ( InternalCustomer (InternalCustomer),
     basicInfo,
-    vipPoints,
+    department,
   )
 where
 
@@ -14,22 +14,22 @@ import CustomerVisualizer as CV
   ( CustomerVisualizer (..),
     customPrint,
   )
-import Visualizer (Visualizer (..))
+import Visualizer as V (Visualizer (..))
 
-data VipCustomer = VipCustomer
+data InternalCustomer = InternalCustomer
   { basicInfo :: Customer,
-    vipPoints :: Int
+    department :: String
   }
 
-instance CustomerVisualizer VipCustomer where
+instance CustomerVisualizer InternalCustomer where
   getName customer = name (basicInfo customer)
 
   getAge customer = age (basicInfo customer)
 
   printOtherInfo customer = do
-    putStrLn ("vipPoints = " <> show (vipPoints customer))
-    putStrLn "@@@@@@@@@@@@@@@@@@@@@@@@@"
+    putStrLn ("department = " <> department customer)
+    putStrLn "&&&&&&&&&&&&&&&&&&&&&"
 
-instance Visualizer VipCustomer where
+instance Visualizer InternalCustomer where
   customPrint customer = do
     CV.customPrint customer
