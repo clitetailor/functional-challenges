@@ -8,6 +8,10 @@ impl Ferrari {
   }
 }
 
-impl Car for Ferrari {}
+impl Car for Ferrari {
+  fn get_engine(&self) -> String {
+    String::from("F154")
+  }
+}
 
 impl Vehicle for Ferrari {}
