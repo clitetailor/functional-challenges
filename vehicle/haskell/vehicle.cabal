@@ -1,0 +1,70 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: f4c356fa1a7198d0da73f1e01df3e1ba0ea45542a8bee89b0f25af6a136366a9
+
+name:           vehicle
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/vehicle#readme>
+homepage:       https://github.com/githubuser/vehicle#readme
+bug-reports:    https://github.com/githubuser/vehicle/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/vehicle
+
+library
+  exposed-modules:
+      Aircraft
+      Car
+      Ferrari
+      Hybrid
+      Submarine
+      Vehicle
+  other-modules:
+      Paths_vehicle
+  hs-source-dirs:
+      src
+  default-extensions: DuplicateRecordFields
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable vehicle-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_vehicle
+  hs-source-dirs:
+      app
+  default-extensions: DuplicateRecordFields
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , vehicle
+  default-language: Haskell2010
+
+test-suite vehicle-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_vehicle
+  hs-source-dirs:
+      test
+  default-extensions: DuplicateRecordFields
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , vehicle
+  default-language: Haskell2010
