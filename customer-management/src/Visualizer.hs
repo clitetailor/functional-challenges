@@ -1,8 +1,6 @@
 module Visualizer
-  ( Visualizer,
-    Visualizable (Visualizable),
-    customPrint,
-    printInfo,
+  ( Visualizer (..),
+    Visualizable (..),
   )
 where
 

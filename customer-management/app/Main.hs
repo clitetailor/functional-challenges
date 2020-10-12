@@ -2,19 +2,28 @@ module Main where
 
 import Control.Monad (forM_)
 import Customer (Customer (..))
+import CustomerLogger (CustomerLogger (..))
+import CustomerMasker (CustomerMasker (..))
+import CustomerVisualizer
+  ( CustomerVisualizable (..),
+    CustomerVisualizer (..),
+  )
 import InternalCustomer (InternalCustomer (..))
 import VipCustomer (VipCustomer (..))
-import Visualizer as V (Visualizable (..), printInfo)
+import Visualizer as V
+  ( Visualizable (..),
+    printInfo,
+  )
 
 main :: IO ()
 main = do
   let customers =
-        [ Visualizable
+        [ CustomerVisualizable
             Customer
               { name = "John Smith",
                 age = 20
               },
-          Visualizable
+          CustomerVisualizable
             VipCustomer
               { basicInfo =
                   Customer
@@ -23,7 +32,7 @@ main = do
                     },
                 vipPoints = 100
               },
-          Visualizable
+          CustomerVisualizable
             InternalCustomer
               { basicInfo =
                   Customer
@@ -33,4 +42,10 @@ main = do
                 department = "IT"
               }
         ]
-  forM_ customers V.printInfo
+  forM_ customers doActions
+  where
+    doActions :: forall a. CustomerVisualizer a => a -> IO ()
+    doActions customer = do
+      let customerMasker = CustomerMasker customer
+      let customerLogger = CustomerLogger customerMasker
+      V.printInfo (Visualizable customerLogger)

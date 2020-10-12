@@ -1,13 +1,10 @@
 module CustomerVisualizer
-  ( CustomerVisualizer,
-    customPrint,
-    printOtherInfo,
-    getName,
-    getAge,
+  ( CustomerVisualizer (..),
+    CustomerVisualizable (..),
   )
 where
 
-import Visualizer as V (Visualizer)
+import Visualizer as V (Visualizer (..))
 
 class Visualizer customerType => CustomerVisualizer customerType where
   getName :: customerType -> String
@@ -27,3 +24,17 @@ class Visualizer customerType => CustomerVisualizer customerType where
   printOtherInfo _ =
     putStrLn
       "$$$$$$$$$$$$$$$$$$$$$$$$$"
+
+data CustomerVisualizable
+  = forall a. CustomerVisualizer a => CustomerVisualizable a
+
+instance Visualizer CustomerVisualizable where
+  customPrint = CustomerVisualizer.customPrint
+
+instance CustomerVisualizer CustomerVisualizable where
+  getName (CustomerVisualizable customer) = getName customer
+
+  getAge (CustomerVisualizable customer) = getAge customer
+
+  customPrint (CustomerVisualizable customer) =
+    CustomerVisualizer.customPrint customer
