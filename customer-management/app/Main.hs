@@ -10,10 +10,7 @@ import CustomerVisualizer
   )
 import InternalCustomer (InternalCustomer (..))
 import VipCustomer (VipCustomer (..))
-import Visualizer as V
-  ( Visualizable (..),
-    printInfo,
-  )
+import Visualizer as V (printInfo)
 
 main :: IO ()
 main = do
@@ -48,4 +45,4 @@ main = do
     doActions customer = do
       let customerMasker = CustomerMasker customer
       let customerLogger = CustomerLogger customerMasker
-      V.printInfo (Visualizable customerLogger)
+      V.printInfo customerLogger

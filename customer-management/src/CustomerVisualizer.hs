@@ -38,3 +38,6 @@ instance CustomerVisualizer CustomerVisualizable where
 
   customPrint (CustomerVisualizable customer) =
     CustomerVisualizer.customPrint customer
+
+  printOtherInfo (CustomerVisualizable customer) =
+    CustomerVisualizer.printOtherInfo customer

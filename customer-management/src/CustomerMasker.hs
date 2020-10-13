@@ -9,18 +9,22 @@ import CustomerVisualizer as CV
   )
 import Visualizer as V (Visualizer (..))
 
-data MaskedCustomer = MaskedCustomer
+data MaskedCustomer a = MaskedCustomer
   { fakeName :: String,
-    age :: Int
+    wrapped :: a
   }
 
-instance Visualizer MaskedCustomer where
-  customPrint = CV.customPrint
+instance CustomerVisualizer a => Visualizer (MaskedCustomer a) where
+  customPrint maskedCustomer = CV.customPrint maskedCustomer
 
-instance CustomerVisualizer MaskedCustomer where
+instance CustomerVisualizer a => CustomerVisualizer (MaskedCustomer a) where
   getName = fakeName
 
-  getAge = age
+  getAge maskedCustomer =
+    getAge (wrapped maskedCustomer)
+
+  printOtherInfo maskedCustomer = do
+    CV.printOtherInfo (wrapped maskedCustomer)
 
 data CustomerMasker
   = forall a. CustomerVisualizer a => CustomerMasker a
@@ -39,6 +43,9 @@ instance CustomerVisualizer CustomerMasker where
         CV.customPrint
           MaskedCustomer
             { fakeName = "******",
-              age = getAge customer
+              wrapped = customer
             }
       else CV.customPrint customer
+
+  printOtherInfo (CustomerMasker customer) =
+    CV.printOtherInfo customer
