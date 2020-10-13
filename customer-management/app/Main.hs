@@ -1,12 +1,12 @@
 module Main where
 
+import Control.Concurrent.Async (async, wait)
 import Control.Monad (forM_)
 import Customer (Customer (..))
 import CustomerLogger (CustomerLogger (..))
 import CustomerMasker (CustomerMasker (..))
 import CustomerVisualizer
   ( CustomerVisualizable (..),
-    CustomerVisualizer (..),
   )
 import InternalCustomer (InternalCustomer (..))
 import VipCustomer (VipCustomer (..))
@@ -39,10 +39,18 @@ main = do
                 department = "IT"
               }
         ]
-  forM_ customers doActions
+
+  let wrappedCustomers = fmap addWrappers customers
+  threads <- mapM (async . doActions wrappedCustomers) [1 .. 50]
+  forM_ threads wait
   where
-    doActions :: forall a. CustomerVisualizer a => a -> IO ()
-    doActions customer = do
-      let customerMasker = CustomerMasker customer
-      let customerLogger = CustomerLogger customerMasker
-      V.printInfo customerLogger
+    addWrappers :: CustomerVisualizable -> CustomerVisualizable
+    addWrappers customer =
+      CustomerVisualizable
+        ( CustomerLogger (CustomerMasker customer)
+        )
+
+    doActions :: [CustomerVisualizable] -> Int -> IO ()
+    doActions customers nth = do
+      forM_ customers V.printInfo
+      putStrLn ("#" <> show nth)
