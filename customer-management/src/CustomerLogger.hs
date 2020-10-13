@@ -25,3 +25,6 @@ instance CustomerVisualizer CustomerLogger where
     putStrLn ("[Log]: Begin CustomPrint for customer name = " <> CV.getName customer)
     CV.customPrint customer
     putStrLn ("[Log]: End CustomPrint for customer name = " <> CV.getName customer)
+
+  printOtherInfo (CustomerLogger customer) =
+    CV.printOtherInfo customer
