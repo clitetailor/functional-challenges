@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 025fdee50f6d19a67ef556e4e5e4dadfad44b41c7fa7114b6e1c8d33ec39880a
+-- hash: 889d9b59a608d5741991d10e9e45d31a8ffd40ef2c4032b77c7a8f4f781c8778
 
 name:           customer-management
 version:        0.1.0.0
@@ -40,7 +40,8 @@ library
       src
   default-extensions: DuplicateRecordFields ExistentialQuantification
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
   default-language: Haskell2010
 
 executable customer-management-exe
@@ -52,7 +53,8 @@ executable customer-management-exe
   default-extensions: DuplicateRecordFields ExistentialQuantification
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
     , customer-management
   default-language: Haskell2010
 
@@ -66,6 +68,7 @@ test-suite customer-management-test
   default-extensions: DuplicateRecordFields ExistentialQuantification
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
     , customer-management
   default-language: Haskell2010
