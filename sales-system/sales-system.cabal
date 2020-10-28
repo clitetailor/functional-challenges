@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4d2d8cf845f197c8e3effcc7fd037578399984976b2a82a7e2cbdf77d5edc603
+-- hash: f6dd4c9ac36a1d60ce24581f314f3f41abfc058bcf448755b7dda60531ab877f
 
 name:           sales-system
 version:        0.1.0.0
@@ -27,13 +27,21 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Product
+      Ship
+      Shop
+      Supplier
+      Warehouse
   other-modules:
       Paths_sales_system
   hs-source-dirs:
       src
+  default-extensions: DuplicateRecordFields MultiParamTypeClasses
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
+    , stm >=2.5 && <3.0
   default-language: Haskell2010
 
 executable sales-system-exe
@@ -42,10 +50,14 @@ executable sales-system-exe
       Paths_sales_system
   hs-source-dirs:
       app
+  default-extensions: DuplicateRecordFields MultiParamTypeClasses
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
     , sales-system
+    , stm >=2.5 && <3.0
   default-language: Haskell2010
 
 test-suite sales-system-test
@@ -55,8 +67,12 @@ test-suite sales-system-test
       Paths_sales_system
   hs-source-dirs:
       test
+  default-extensions: DuplicateRecordFields MultiParamTypeClasses
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
     , sales-system
+    , stm >=2.5 && <3.0
   default-language: Haskell2010
