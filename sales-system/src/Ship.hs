@@ -14,7 +14,7 @@ class Ship a b where
 instance Ship Supplier Warehouse where
   ship supplier warehouse = do
     maybeProduct <-
-      atomically $ do
+      atomically do
         list <- readTVar $ S.products supplier
 
         case list of
@@ -24,11 +24,11 @@ instance Ship Supplier Warehouse where
           _ -> do
             return $ Nothing
 
+    threadDelay 100
+
     case maybeProduct of
       Just product -> do
-        threadDelay 100
-
-        atomically $ do
+        atomically do
           list <- readTVar $ W.products warehouse
 
           writeTVar
@@ -39,7 +39,7 @@ instance Ship Supplier Warehouse where
 instance Ship Warehouse Shop where
   ship warehouse shop = do
     maybeProduct <-
-      atomically $ do
+      atomically do
         list <- readTVar $ W.products warehouse
 
         case list of
@@ -49,11 +49,11 @@ instance Ship Warehouse Shop where
           _ -> do
             return $ Nothing
 
+    threadDelay 100
+
     case maybeProduct of
       Just product -> do
-        threadDelay 100
-
-        atomically $ do
+        atomically do
           list <- readTVar $ Sh.products shop
 
           writeTVar
@@ -64,7 +64,7 @@ instance Ship Warehouse Shop where
 instance Ship Supplier Shop where
   ship supplier shop = do
     maybeProduct <-
-      atomically $ do
+      atomically do
         list <- readTVar $ S.products supplier
 
         case list of
@@ -74,11 +74,11 @@ instance Ship Supplier Shop where
           _ -> do
             return $ Nothing
 
+    threadDelay 100
+
     case maybeProduct of
       Just product -> do
-        threadDelay 100
-
-        atomically $ do
+        atomically do
           list <- readTVar $ Sh.products shop
 
           writeTVar

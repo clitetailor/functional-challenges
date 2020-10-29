@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f6dd4c9ac36a1d60ce24581f314f3f41abfc058bcf448755b7dda60531ab877f
+-- hash: 613996efdbee77d33575eaba49203bdf3c1a5f26fd504e36a1c041a25138f122
 
 name:           sales-system
 version:        0.1.0.0
@@ -36,7 +36,7 @@ library
       Paths_sales_system
   hs-source-dirs:
       src
-  default-extensions: DuplicateRecordFields MultiParamTypeClasses
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
   build-depends:
       async >=2.1 && <3
     , base >=4.7 && <5
@@ -50,7 +50,7 @@ executable sales-system-exe
       Paths_sales_system
   hs-source-dirs:
       app
-  default-extensions: DuplicateRecordFields MultiParamTypeClasses
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       async >=2.1 && <3
@@ -67,7 +67,7 @@ test-suite sales-system-test
       Paths_sales_system
   hs-source-dirs:
       test
-  default-extensions: DuplicateRecordFields MultiParamTypeClasses
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       async >=2.1 && <3

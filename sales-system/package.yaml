@@ -20,8 +20,11 @@ extra-source-files:
 description: Please see the README on GitHub at <https://github.com/githubuser/sales-system#readme>
 
 default-extensions:
+  - BlockArguments
+  - LambdaCase
   - DuplicateRecordFields
   - MultiParamTypeClasses
+  - ExistentialQuantification
 
 dependencies:
   - base >= 4.7 && < 5
