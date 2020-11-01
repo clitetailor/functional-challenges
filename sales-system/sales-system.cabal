@@ -1,0 +1,78 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 613996efdbee77d33575eaba49203bdf3c1a5f26fd504e36a1c041a25138f122
+
+name:           sales-system
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/sales-system#readme>
+homepage:       https://github.com/githubuser/sales-system#readme
+bug-reports:    https://github.com/githubuser/sales-system/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/sales-system
+
+library
+  exposed-modules:
+      Product
+      Ship
+      Shop
+      Supplier
+      Warehouse
+  other-modules:
+      Paths_sales_system
+  hs-source-dirs:
+      src
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
+  build-depends:
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
+    , stm >=2.5 && <3.0
+  default-language: Haskell2010
+
+executable sales-system-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_sales_system
+  hs-source-dirs:
+      app
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
+    , sales-system
+    , stm >=2.5 && <3.0
+  default-language: Haskell2010
+
+test-suite sales-system-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_sales_system
+  hs-source-dirs:
+      test
+  default-extensions: BlockArguments LambdaCase DuplicateRecordFields MultiParamTypeClasses ExistentialQuantification
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      async >=2.1 && <3
+    , base >=4.7 && <5
+    , containers >=0.6 && <0.7
+    , sales-system
+    , stm >=2.5 && <3.0
+  default-language: Haskell2010
